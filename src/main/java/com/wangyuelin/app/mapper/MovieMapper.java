@@ -2,8 +2,10 @@ package com.wangyuelin.app.mapper;
 
 import com.wangyuelin.app.bean.HomeMovieBean;
 import com.wangyuelin.app.bean.MovieDetail;
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.cache.decorators.LruCache;
 
 import java.util.List;
 
@@ -13,11 +15,10 @@ import java.util.List;
  * @outhor wangyuelin
  * @create 2018-06-25 下午4:26
  */
+@CacheNamespace(eviction = LruCache.class, flushInterval = 60000L, size = 1024, readWrite = true)
 @Mapper
 public interface MovieMapper {
-    List<HomeMovieBean> getByTag(String tag);
-    List<HomeMovieBean> getMovies(@Param("tag") String tag, @Param("num") int num);
-    List<MovieDetail> getMovieById(int id);
+
 
 
 }

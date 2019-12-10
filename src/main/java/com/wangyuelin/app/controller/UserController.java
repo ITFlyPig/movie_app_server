@@ -1,5 +1,6 @@
 package com.wangyuelin.app.controller;
 
+import com.wangyuelin.app.bean.RespBean;
 import com.wangyuelin.app.bean.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +20,13 @@ public class UserController {
 //    private ITest test;
 //
 //
-//    @RequestMapping("/getOneUser")
-//    @ResponseBody
-//    public User getOneUser(){
-//        logger.info("getOneUser");
-//        return test.getUser();
-//    }
+    @RequestMapping("/getOneUser")
+    @ResponseBody
+    public RespBean getOneUser(){
+        User user = new User();
+        user.setName("wang");
+        return new RespBean(1000, "请求成功", user);
+    }
 //
 //
 //    @RequestMapping("/getAll")
