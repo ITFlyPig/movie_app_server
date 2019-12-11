@@ -1,9 +1,11 @@
 package com.wangyuelin.app.bean;
 
+import java.io.Serializable;
+
 /**
  * 这里可能承载电影、电视剧、动漫等
  */
-public class RecommendMedia {
+public class RecommendMedia implements Serializable {
     private long id;
     private String name;//名称
     private float rank;//评分
