@@ -22,7 +22,7 @@ public interface RecommendMovieMapper {
     @Select("SELECT movie.id, name, douban_rank, covers FROM movie " +
             "LEFT JOIN type_relationship ON movie.id = type_relationship.movie_id " +
             "WHERE type_relationship.type_id = #{typeId} AND `year`>= #{endYear} AND douban_rank >= #{minRank} " +
-            "ORDER BY douban_rank DESC")
+            "ORDER BY douban_rank DESC LIMIT 6")
     @Results({
             @Result(property = "id", column = "id", id = true, javaType = Long.class, jdbcType = JdbcType.BIGINT),
             @Result(property = "name", column = "name", javaType = String.class, jdbcType = JdbcType.VARCHAR),

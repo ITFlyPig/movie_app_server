@@ -6,6 +6,15 @@ public class Banner implements Serializable {
     private long id;
     private String url;
     private String name;
+    private String cover;
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
     public String getName() {
         return name;

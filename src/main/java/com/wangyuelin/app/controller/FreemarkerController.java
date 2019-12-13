@@ -39,7 +39,7 @@ public class FreemarkerController {
 
     @RequestMapping("dlz_movie/home")
     public String index(ModelMap modelMap) {
-        HomeMovieResp resp = movieController.getHomeMovies();
+//        HomeMovieResp resp = movieController.getHomeMovies();
 //        Map<MovieTagBean, List<HomeMovieBean>> data = movieController.getHomeMovieByTag(MovieTag.ZUIXIN);
 //        Iterator iterator =  data.keySet().iterator();
 //        while (iterator.hasNext()) {
@@ -47,7 +47,7 @@ public class FreemarkerController {
 //            System.out.println("查询都的"+ list.toString());
 //            modelMap.addAttribute("data", list);
 //        }
-        modelMap.addAttribute("data", resp);
+//        modelMap.addAttribute("data", resp);
 
 //        HomeMovieBean movieBean = new HomeMovieBean();
 //        movieBean.setName("侏罗纪");
@@ -78,7 +78,7 @@ public class FreemarkerController {
             view.setViewName(Constant.Page.P_404);
             return view;
         }
-        MovieDetail detail = movieController.getMovieByid(id);
+        MovieDetail detail = null;
         if (detail == null) {
             view.setViewName(Constant.Page.P_404);
             return view;

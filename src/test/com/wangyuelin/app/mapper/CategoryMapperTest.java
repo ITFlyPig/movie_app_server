@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,6 +31,12 @@ public class CategoryMapperTest {
     }
 
 
+    @Test
+    public void allType() throws Exception {
+         List<Map<String, Object>> types = typeMapper.getAllTypes();
+        System.out.println("");
+
+    }
 
 
 

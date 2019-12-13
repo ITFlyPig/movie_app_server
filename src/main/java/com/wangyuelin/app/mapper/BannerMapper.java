@@ -33,11 +33,12 @@ public interface BannerMapper {
      * @param categoryId
      * @return
      */
-    @Select("SELECT id, `name`, url FROM banner WHERE category_id = #{categoryId}")
+    @Select("SELECT id, `name`, url, cover FROM banner WHERE category_id = #{categoryId}")
     @Results({
             @Result(property = "id", column = "id", id = true, javaType = Long.class, jdbcType = JdbcType.BIGINT),
             @Result(property = "url", column = "url", javaType = String.class, jdbcType = JdbcType.VARCHAR),
-            @Result(property = "name", column = "name", javaType = String.class, jdbcType = JdbcType.VARCHAR)
+            @Result(property = "name", column = "name", javaType = String.class, jdbcType = JdbcType.VARCHAR),
+            @Result(property = "cover", column = "cover", javaType = String.class, jdbcType = JdbcType.VARCHAR)
     })
     List<Banner> getBanners(@Param("categoryId") int categoryId);
 
