@@ -1,13 +1,7 @@
 package com.wangyuelin.app.service;
 
-import com.wangyuelin.app.bean.Banner;
-import com.wangyuelin.app.bean.HomeMovieBean;
-import com.wangyuelin.app.bean.MovieDetail;
-import com.wangyuelin.app.bean.RecommendMedia;
-import com.wangyuelin.app.mapper.BannerMapper;
-import com.wangyuelin.app.mapper.MovieMapper;
-import com.wangyuelin.app.mapper.RecommendMovieMapper;
-import com.wangyuelin.app.mapper.TypeMapper;
+import com.wangyuelin.app.bean.*;
+import com.wangyuelin.app.mapper.*;
 import com.wangyuelin.app.service.itf.IMovie;
 import com.wangyuelin.app.utils.TextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +26,10 @@ public class MovieService implements IMovie {
     private RecommendMovieMapper recMapper;
     @Autowired
     private TypeMapper typeMapper;
+    @Autowired
+    private MovieMapper movieMapper;
+    @Autowired
+    private LinkMapper linkMapper;
 
 
     @Override
@@ -66,4 +64,29 @@ public class MovieService implements IMovie {
         }
         return results;
     }
+
+    @Override
+    public Movie getMovie(long movieId) {
+        //查询基本信息
+        Movie movie = movieMapper.get(movieId);
+        //查询具有的链接资源类型
+        List<LinkTypeItem> linkTypeItems = linkMapper.getLinkTypes(movie.getId());
+        List<MovieLink> links = new ArrayList<MovieLink>();
+        movie.setLinkTypes(links);
+        //查询每种类型下的具体资源
+        for (LinkTypeItem linkTypeItem : linkTypeItems) {
+            MovieLink movieLink = new MovieLink();
+            //资源类型的名称
+            movieLink.setTypeName(linkTypeItem.getTypeName());
+            //资源类型的数字表示
+            movieLink.setTypeValue(linkTypeItem.getTypeValue());
+            //类型下的具体资源
+            List<MovieLink.LinkItem> linkItems = linkMapper.getLinks(linkTypeItem.getId());
+            movieLink.setLinks(linkItems);
+            links.add(movieLink);
+        }
+        return movie;
+    }
+
+
 }

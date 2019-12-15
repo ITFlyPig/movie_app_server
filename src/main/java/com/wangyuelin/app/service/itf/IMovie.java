@@ -1,9 +1,6 @@
 package com.wangyuelin.app.service.itf;
 
-import com.wangyuelin.app.bean.Banner;
-import com.wangyuelin.app.bean.HomeMovieBean;
-import com.wangyuelin.app.bean.MovieDetail;
-import com.wangyuelin.app.bean.RecommendMedia;
+import com.wangyuelin.app.bean.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,4 +24,11 @@ public interface IMovie {
      * @return
      */
     List<HashMap<String, Object>> getRecs();
+
+    /**
+     * 查询电影的信息
+     * @param movieId
+     * @return
+     */
+    Movie getMovie(long movieId);
 }
